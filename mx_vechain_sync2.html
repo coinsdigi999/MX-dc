@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MX Digital Coins - Vechain Web3</title>
+  <script src="https://cdn.jsdelivr.net/npm/@vechain/connex@2.1.2/dist/connex.min.js"></script>
+  <style>
+    body { font-family: Arial; background: #111; color: #0f0; padding: 2rem; text-align: center; }
+    button { padding: 10px 20px; margin: 20px; font-size: 1rem; background-color: #0f0; color: #000; border: none; border-radius: 5px; cursor: pointer; }
+    #result { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Conexión Web3 - Vechain</h1>
+  <p>Usuario: Anunnaki#777</p>
+  <button onclick="connect()">Conectar Wallet Sync2</button>
+  <div id="result">Esperando conexión...</div>
+
+  <script>
+    async function connect() {
+      try {
+        const connex = new Connex({
+          node: "https://sync-mainnet.vechain.org",
+          network: "main"
+        });
+
+        const account = await connex.thor.genesis();
+        document.getElementById('result').innerText = 'Conectado a Vechain. Dirección: ' + account.id;
+      } catch (error) {
+        document.getElementById('result').innerText = 'Error al conectar: ' + error;
+      }
+    }
+  </script>
+</body>
+</html>
